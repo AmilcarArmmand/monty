@@ -46,18 +46,22 @@ typedef struct instruction_s
 } instruction_t;
 
 /* need function naming convention and rename below functions */
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-void (*f)(stack_t **stack, unsigned int line_number);
-
+void op_push(*f)(stack_t **stack, unsigned int line_number);
+void op_pall(*f)(stack_t **stack, unsigned int line_number);
+void op_pint(*f)(stack_t **stack, unsigned int line_number);
+void op_pop(*f)(stack_t **stack, unsigned int line_number);
+void op_swap(*f)(stack_t **stack, unsigned int line_number);
+void op_add(*f)(stack_t **stack, unsigned int line_number);
+void op_nop(*f)(stack_t **stack, unsigned int line_number);
+void op_sub(*f)(stack_t **stack, unsigned int line_number);
+void op_div(*f)(stack_t **stack, unsigned int line_number);
+void op_mul(*f)(stack_t **stack, unsigned int line_number);
+void op_mod(*f)(stack_t **stack, unsigned int line_number);
+void op_pchar(*f)(stack_t **stack, unsigned int line_number);
+void op_pstr(*f)(stack_t **stack, unsigned int line_number);
+void op_rotl(*f)(stack_t **stack, unsigned int line_number);
+void op_rotr(*f)(stack_t **stack, unsigned int line_number);
+void op_stack(*f)(stack_t **stack, unsigned int line_number);
+void op_queue(*f)(stack_t **stack, unsigned int line_number);
 
 #endif  /* MONTY_H  */
