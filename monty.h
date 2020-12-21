@@ -67,7 +67,11 @@ void op_queue(stack_t **stack, unsigned int line_number);
 
 int parse_monty(FILE *fp);
 char **evaluate_monty(char *str);
-void (*get_op_func(char *opcode))(stack_t **stack, unsigned int);
+void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number);
 char **op_seperater(char *str);
+int file_open_error(char *filename);
+void free_stack(stack_t **stack);
+int initialize_stack(stack_t **stack);
+int stack_malloc_error(void)
 
 #endif  /* MONTY_H  */
