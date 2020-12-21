@@ -10,10 +10,10 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#define DELIMS " \n\t\v\r"
+#define DELIMS " \n\t\v\r\a"
+#define EXIT_SUCCESS 0
+extern char **op_tokens; /*  extern needed in header and define in main.c */
 
-/* extern char **op_tokens  /* idea for the global variable tokens */
-/* ??? flags for exit_success, exit codes, stack, queue, */
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -45,23 +45,27 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* need function naming convention and rename below functions */
-void op_push(*f)(stack_t **stack, unsigned int line_number);
-void op_pall(*f)(stack_t **stack, unsigned int line_number);
-void op_pint(*f)(stack_t **stack, unsigned int line_number);
-void op_pop(*f)(stack_t **stack, unsigned int line_number);
-void op_swap(*f)(stack_t **stack, unsigned int line_number);
-void op_add(*f)(stack_t **stack, unsigned int line_number);
-void op_nop(*f)(stack_t **stack, unsigned int line_number);
-void op_sub(*f)(stack_t **stack, unsigned int line_number);
-void op_div(*f)(stack_t **stack, unsigned int line_number);
-void op_mul(*f)(stack_t **stack, unsigned int line_number);
-void op_mod(*f)(stack_t **stack, unsigned int line_number);
-void op_pchar(*f)(stack_t **stack, unsigned int line_number);
-void op_pstr(*f)(stack_t **stack, unsigned int line_number);
-void op_rotl(*f)(stack_t **stack, unsigned int line_number);
-void op_rotr(*f)(stack_t **stack, unsigned int line_number);
-void op_stack(*f)(stack_t **stack, unsigned int line_number);
-void op_queue(*f)(stack_t **stack, unsigned int line_number);
+void op_push(stack_t **stack, unsigned int line_number);
+void op_pall(stack_t **stack, unsigned int line_number);
+void op_pint(stack_t **stack, unsigned int line_number);
+void op_pop(stack_t **stack, unsigned int line_number);
+void op_swap(stack_t **stack, unsigned int line_number);
+void op_add(stack_t **stack, unsigned int line_number);
+void op_nop(stack_t **stack, unsigned int line_number);
+void op_sub(stack_t **stack, unsigned int line_number);
+void op_div(stack_t **stack, unsigned int line_number);
+void op_mul(stack_t **stack, unsigned int line_number);
+void op_mod(stack_t **stack, unsigned int line_number);
+void op_pchar(stack_t **stack, unsigned int line_number);
+void op_pstr(stack_t **stack, unsigned int line_number);
+void op_rotl(stack_t **stack, unsigned int line_number);
+void op_rotr(stack_t **stack, unsigned int line_number);
+void op_stack(stack_t **stack, unsigned int line_number);
+void op_queue(stack_t **stack, unsigned int line_number);
+
+int parse_monty(FILE *fp);
+char **evaluate_monty(char *str);
+void (*get_op_func(char *opcode))(stack_t **stack, unsigned int);
+
 
 #endif  /* MONTY_H  */
