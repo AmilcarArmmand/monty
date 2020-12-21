@@ -18,11 +18,15 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
+		
 		return (EXIT_FAILURE);
 	}
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
+	{
+		file_open_error(argv[1]);
 		exit(EXIT_FAILURE);
+	}
 
 	exit_code = parse_monty(fp);
 	fclose(fp);
