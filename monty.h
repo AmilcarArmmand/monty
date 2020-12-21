@@ -10,7 +10,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+<<<<<<< HEAD
 #define DELIMS " \n\t\v\r\a"
+=======
+#define DELIMS " \n\t\v\r"
+>>>>>>> drawingboard
 #define EXIT_SUCCESS 0
 extern char **op_tokens; /*  extern needed in header and define in main.c */
 
@@ -45,6 +49,10 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+<<<<<<< HEAD
+=======
+/* need function naming convention and rename below functions */
+>>>>>>> drawingboard
 void op_push(stack_t **stack, unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);
 void op_pint(stack_t **stack, unsigned int line_number);
@@ -63,9 +71,21 @@ void op_rotr(stack_t **stack, unsigned int line_number);
 void op_stack(stack_t **stack, unsigned int line_number);
 void op_queue(stack_t **stack, unsigned int line_number);
 
+<<<<<<< HEAD
 int parse_monty(FILE *fp);
 char **evaluate_monty(char *str);
 void (*get_op_func(char *opcode))(stack_t **stack, unsigned int);
 
+=======
+
+int parse_monty(FILE *fp);
+char **evaluate_monty(char *str);
+void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number);
+char **op_seperater(char *str);
+int file_open_error(char *filename);
+void free_stack(stack_t **stack);
+int initialize_stack(stack_t **stack);
+int stack_malloc_error(void)
+>>>>>>> drawingboard
 
 #endif  /* MONTY_H  */
