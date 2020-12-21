@@ -1,0 +1,32 @@
+main (arc argv)
+line, buff
+size
+fd
+list
+
+fd = open filename rdonly
+if null
+    close
+    error
+while status
+{
+    set line to null
+    set buff to null
+    set size to 0
+    increase linecount
+    run getline and check if EOF
+    {
+        free everything
+        set status to exit loop
+        exit loop
+    }
+    buff = clean_line(line)
+    if buff is null
+        continue
+    execute(buff, list)
+    free buff
+}
+free list
+free2d buff
+free line
+return 0

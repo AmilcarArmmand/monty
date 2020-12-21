@@ -25,5 +25,6 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 
 	exit_code = parse_monty(fp);
+	fclose(fp);
 	exit(exit_code);
 }

@@ -64,8 +64,10 @@ void op_rotr(stack_t **stack, unsigned int line_number);
 void op_stack(stack_t **stack, unsigned int line_number);
 void op_queue(stack_t **stack, unsigned int line_number);
 
+
 int parse_monty(FILE *fp);
 char **evaluate_monty(char *str);
 void (*get_op_func(char *opcode))(stack_t **stack, unsigned int);
+char **op_seperater(char *str);
 
 #endif  /* MONTY_H  */

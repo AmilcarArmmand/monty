@@ -13,19 +13,23 @@ int parse_monty(FILE *fp)
 	ssize_t read;
 	int exit_code = EXIT_SUCCESS;
 	unsigned int line_number = 0;
-	char *op_tokens = NULL;
+	char **op_tokens = NULL;
+	int i = 0;
 
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
 		line_number++;
 		printf("Line number: %d\t", line_number);
 		/* break the line into tokens */
-		op_tokens = strtok(line, DELIMS);
-		op_tokens = strtok(line, DELIMS);
-
+		/* op_tokens = strtok(line, DELIMS); */
+		op_tokens = op_seperater(line);
 		printf("Retrieved line of length %lu : %s\n", read, line);
-		/* if the first token is an op_function */
-		printf(" ---> %s\n", op_tokens);
+		/* if the first toke is an op_function */
+		for (i = 0; *(op_tokens + i); i++)
+		{
+			printf(" ---> %s\n", *(op_tokens + i));
+		}
+		/*   strcpm(op_token[0] = ) */
 		/* if get_op_func(op_tokens[0]) */
 	}
 
