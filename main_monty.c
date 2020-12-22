@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+char **op_tokens = NULL;
+
 /**
  * main - the entry point of the Monty Bytecode Interpreter
  * @argc: the number of arguments passed to main

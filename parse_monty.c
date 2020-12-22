@@ -13,7 +13,6 @@ int parse_monty(FILE *fp)
 	ssize_t read;
 	int exit_code = EXIT_SUCCESS;
 	unsigned int line_number = 0;
-	char **op_tokens = NULL;
 	int i = 0;
 	stack_t *stack = NULL;
 	void (*op_func)(stack_t**, unsigned int);
