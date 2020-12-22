@@ -6,7 +6,7 @@
  *
  * Return: the pointer to the function that performs the operation or NULL
  */
-void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number)
+void (*get_op_func(char *opcode))(stack_t**, unsigned int)
 {
 	instruction_t op_func[] = {
 		{"push", op_push},
@@ -33,7 +33,6 @@ void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number)
 	{
 		if ((strcmp(op_func[i].opcode, opcode)) == 0)
 			return ((op_func[i]).f);
-		i++;
 	}
 	return (NULL);
 }

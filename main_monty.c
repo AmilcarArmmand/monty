@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+char **op_tokens = NULL;
+
 /**
  * main - the entry point of the Monty Bytecode Interpreter
  * @argc: the number of arguments passed to main
@@ -12,13 +14,12 @@
 int main(int argc, char **argv)
 {
 	FILE *fp;
-	int exit_code = 0;
+	int exit_code;
 
 	exit_code = EXIT_SUCCESS;
 
 	if (argc != 2)
 	{
-		
 		return (EXIT_FAILURE);
 	}
 	fp = fopen(argv[1], "r");
@@ -30,5 +31,5 @@ int main(int argc, char **argv)
 
 	exit_code = parse_monty(fp);
 	fclose(fp);
-	exit(exit_code);
+	return (exit_code);
 }

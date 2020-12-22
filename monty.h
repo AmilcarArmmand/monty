@@ -1,11 +1,12 @@
-#ifndef  MONTY_H
+#ifndef MONTY_H
 #define MONTY_H
 
 /* Libraries used  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include <unistd.h>
+#include <ctype.h> 
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -66,6 +67,20 @@ void op_rotr(stack_t **stack, unsigned int line_number);
 void op_stack(stack_t **stack, unsigned int line_number);
 void op_queue(stack_t **stack, unsigned int line_number);
 
+int file_open_error(char *filename);
+int stack_malloc_error(void);
+int op_push_error(unsigned int line_number);
+int op_pop_error(unsigned int line_number);
+int op_add_error(unsigned int line_number);
+int op_swap_error(unsigned int line_number);
+int op_sub_error(unsigned int line_number);
+int op_mul_error(unsigned int line_number);
+int op_div_error(unsigned int line_number);
+int op_mod_error(unsigned int line_number);
+int op_div_zero_error(unsigned int line_number);
+int op_pint_error(unsigned int line_number);
+int op_pchar_error(unsigned int line_number);
+int op_pchar_value_error(unsigned int line_number);
 
 int parse_monty(FILE *fp);
 char **evaluate_monty(char *str);
@@ -76,10 +91,8 @@ int parse_monty(FILE *fp);
 char **evaluate_monty(char *str);
 void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number);
 char **op_seperater(char *str);
-int file_open_error(char *filename);
-void free_stack(stack_t **stack);
+void free_stack(stack_t *stack);
 int initialize_stack(stack_t **stack);
-int stack_malloc_error(void)
 
-
+unsigned int stack_len(stack_t **stack);
 #endif  /* MONTY_H  */

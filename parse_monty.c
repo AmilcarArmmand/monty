@@ -13,26 +13,37 @@ int parse_monty(FILE *fp)
 	ssize_t read;
 	int exit_code = EXIT_SUCCESS;
 	unsigned int line_number = 0;
-	char **op_tokens = NULL;
 	int i = 0;
+	stack_t *stack = NULL;
+	void (*op_func)(stack_t**, unsigned int);
 
+	if (initialize_stack(&stack) != EXIT_SUCCESS)
+		return (EXIT_FAILURE);
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
 		line_number++;
-		printf("Line number: %d\t", line_number);
 		/* break the line into tokens */
 		/* op_tokens = strtok(line, DELIMS); */
 		op_tokens = op_seperater(line);
-		printf("Retrieved line of length %lu : %s\n", read, line);
-		/* if the first toke is an op_function */
-		for (i = 0; *(op_tokens + i); i++)
+		/* if op_token has no match and if there is a match */
+		op_func = get_op_func(op_tokens[0]);
+		if (op_func == NULL)
 		{
-			printf(" ---> %s\n", *(op_tokens + i));
+			free_stack(stack);
+			for (i = 0; op_tokens[i]; i++)
+				free(op_tokens[i]);
+			free(op_tokens);
+			break;
 		}
+		op_func(&stack, line_number);
 		/*   strcpm(op_token[0] = ) */
 		/* if get_op_func(op_tokens[0]) */
+		/* free tokens  */
+		for (i = 0; op_tokens[i]; i++)
+			free(op_tokens[i]);
+		free(op_tokens);
 	}
-
+	free_stack(stack);
 	free(line);
 	return (exit_code);
 }
