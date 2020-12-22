@@ -6,21 +6,20 @@
  *
  * Return: address of new nodes or NULL on failure
  */
-int stack_rotl(stack_t **stack)
+void stack_rotl(stack_t **stack)
 {
 	stack_t *top, *bottom, *new_top;
 
 	top = *stack;
-	while (top->next != NULL)
-		top = top->next;
-	new_top = top->prev;
+	new_top = top->next;
 	bottom = *stack;
+	while (bottom->next != NULL)
+		bottom = bottom->next;
 
-	new_top->next = top->next;
-	top->prev = bottom->prev;
-	top->next = bottom;
-	bottom->prev = top;
-	return (EXIT_SUCCESS);
+	new_top->prev = top->prev;
+	top->prev = bottom;
+	top->next = bottom->next;
+	bottom->next = top;
 }
 
 /**
@@ -29,20 +28,19 @@ int stack_rotl(stack_t **stack)
  *
  * Return: address of new nodes or NULL on failure
  */
-int stack_rotr(stack_t **stack)
+void stack_rotr(stack_t **stack)
 {
 	stack_t *top, *bottom, *new_bottom;
 
-	bottom = *stack;
-	new_bottom = bottom->next;
 	top = *stack;
-	while (top->next != NULL)
-		top = top->next;
-	new_bottom->prev = bottom->prev;
-	bottom->prev = top;
-	bottom->next = top->next;
-	top->next = bottom;
-	return (EXIT_SUCCESS);
+	bottom = *stack;
+	while (bottom->next != NULL)
+		bottom = bottom->next;
+	new_bottom = bottom->prev;
+	new_bottom->next = bottom->next;
+	bottom->next = top;
+	bottom->prev = top->prev;
+	top->prev = bottom;
 }
 
 /**
@@ -51,14 +49,11 @@ int stack_rotr(stack_t **stack)
  *
  * Return: address of new nodes or NULL on failure
  */
-int stack_pop(stack_t **stack)
+void stack_pop(stack_t **stack)
 {
 	stack_t *temp;
 
 	temp = *stack;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->prev->next = temp->next;
+	temp->next->prev = temp->prev;
 	free(temp);
-	return (EXIT_SUCCESS);
 }

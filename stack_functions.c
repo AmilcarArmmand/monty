@@ -50,7 +50,7 @@ int initialize_stack(stack_t **stack)
  * @n: number
  * Return: address of new nodes or NULL on failure
  */
-int stack_push_node(stack_t **stack, int n)
+void stack_push_node(stack_t **stack, int n)
 {
 	stack_t *new, *temp;
 
@@ -58,18 +58,15 @@ int stack_push_node(stack_t **stack, int n)
 		return (initialize_stack(&stack));
 	
 	temp = *stack;
-	while (temp->next != NULL)
-		temp = temp->next;
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 		return (stack_malloc_error());
 
 	new->n = n;
-	new->next = NULL;
-	new->prev = temp;
-	temp->next = new;
-	return (EXIT_SUCCESS);
+	new->next = temp;
+	new->prev = temp->prev;
+	temp->prev = new;
 }
 
 /**
@@ -78,7 +75,7 @@ int stack_push_node(stack_t **stack, int n)
  *
  * Return: address of new nodes or NULL on failure
  */
-int stack_print_node(stack_t **stack)
+void stack_print_node(stack_t **stack)
 {
 	stack_t *temp;
 
@@ -92,25 +89,18 @@ int stack_print_node(stack_t **stack)
  *
  * Return: address of new nodes or NULL on failure
  */
-int stack_swap_node(stack_t **stack)
+void stack_swap_node(stack_t **stack)
 {
 	stack_t *first, *second, *third;
 
 	first = *stack;
-	second = *stack;
-	third = *stack;
-	while (first->next != NULL)
-		first = first->next;
-	while (second->next != first)
-		second = second->next;
-	while (third->next != second)
-		third = third->next;
-	
-	third->next = first;
-	first->prev = third;
-	second->next = first->next;
-	first->next = second;
-	second->prev = first;
+	second = first->next;
+	third = second->next;
 
+	second->next = first;
+	second->prev = first->prev;
+	first->prev = second;
+	first->next = third;
+	third->prev = first;
 	return (EXIT_SUCCESS);
 }
