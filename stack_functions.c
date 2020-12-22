@@ -3,7 +3,7 @@
 /**
  * free_stack - fucntion that frees a doubly linked list
  * @stack: pointer to head of double list
- * 
+ *
  * Return: nothing
  */
 void free_stack(stack_t *stack)
