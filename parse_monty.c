@@ -16,7 +16,7 @@ int parse_monty(FILE *fp)
 	char **op_tokens = NULL;
 	int i = 0;
 	stack_t *stack = NULL;
-	/* fix errors then check variadic and stack initialization  */
+	void (*op_func)(stack_t**, unsigned int);
 
 	if (initialize_stack(&stack) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
@@ -33,6 +33,15 @@ int parse_monty(FILE *fp)
 		{
 			printf(" ---> %s\n", *(op_tokens + i));
 		}
+		/* if op_token has no match and if there is a match */
+		op_func = get_op_func(op_tokens[0]);
+		if (op_func == NULL)
+		{
+			free_stack(&stack);
+			/* free token */
+			break;
+		}
+		op_func(&stack, line_number);
 		/*   strcpm(op_token[0] = ) */
 		/* if get_op_func(op_tokens[0]) */
 		/* free tokens  */
