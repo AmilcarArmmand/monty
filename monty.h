@@ -1,4 +1,4 @@
-#ifndef  MONTY_H
+#ifndef MONTY_H
 #define MONTY_H
 
 /* Libraries used  */
@@ -48,7 +48,7 @@ typedef struct instruction_s
 
 
 /* need function naming convention and rename below functions */
-void op_push(stack_t **stack, unsigned int line_number);
+void stack_push_node(stack_t **stack, unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);
 void op_pint(stack_t **stack, unsigned int line_number);
 void op_pop(stack_t **stack, unsigned int line_number);
