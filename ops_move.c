@@ -81,27 +81,3 @@ void op_rotr(stack_t **stack, unsigned int line_number)
 		top->prev = bottom;
 	}
 }
-
-/**
- * op_stack -
- * @stack: pointer to head of doubly linked list
- * @line_number: current line number
- * Return: address of new nodes or NULL on failure
- */
-void op_stack(stack_t **stack, unsigned int line_number)
-{
-	(void)line_number;
-	(void)stack;
-}
-
-/**
- * op_queue -
- * @stack: pointer to head of doubly linked list
- * @line_number: current line number
- * Return: address of new nodes or NULL on failure
- */
-void op_queue(stack_t **stack, unsigned int line_number)
-{
-	(void)line_number;
-	(void)stack;
-}
