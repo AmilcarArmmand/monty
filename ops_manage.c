@@ -9,22 +9,22 @@
 void op_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new, *temp;
+	int n = 2020;
 
 	(void)line_number;
-
-	if (*stack == NULL)
-		return (initialize_stack(&stack));
 	
 	temp = *stack;
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
-		return (stack_malloc_error());
+		stack_malloc_error();
 
-	/*new->n = n;*/
-	new->next = temp;
-	new->prev = temp->prev;
-	temp->prev = new;
+	new->n = n;
+	if (temp->next != NULL)
+		temp->next->prev = new;
+	new->next = temp->next;
+	temp->next = new;
+	new->prev = temp;
 }
 
 /**
@@ -37,11 +37,13 @@ void op_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 
-	if (temp == NULL)
-		return (op_pop_error(line_number));
-
 	temp = *stack;
-	temp->next->prev = temp->prev;
+	if (temp->next == NULL)
+		op_pop_error(line_number);
+	temp = temp->next;
+	temp->prev->next = temp->next;
+	if (temp->next != NULL)
+		temp->next->prev = temp->prev;
 	free(temp);
 }
 
