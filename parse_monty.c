@@ -15,7 +15,11 @@ int parse_monty(FILE *fp)
 	unsigned int line_number = 0;
 	char **op_tokens = NULL;
 	int i = 0;
+	stack_t *stack = NULL;
+	/* fix errors then check variadic and stack initialization  */
 
+	if (initialize_stack(&stack) != EXIT_SUCCESS)
+		return (EXIT_FAILURE);
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
 		line_number++;
@@ -31,8 +35,9 @@ int parse_monty(FILE *fp)
 		}
 		/*   strcpm(op_token[0] = ) */
 		/* if get_op_func(op_tokens[0]) */
+		/* free tokens  */
 	}
-
+	free_stack(&stack);
 	free(line);
 	return (exit_code);
 }
