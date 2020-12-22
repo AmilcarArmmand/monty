@@ -37,7 +37,7 @@ int parse_monty(FILE *fp)
 		op_func = get_op_func(op_tokens[0]);
 		if (op_func == NULL)
 		{
-			free_stack(&stack);
+			free_stack(stack);
 			/* free token */
 			break;
 		}
@@ -46,7 +46,7 @@ int parse_monty(FILE *fp)
 		/* if get_op_func(op_tokens[0]) */
 		/* free tokens  */
 	}
-	free_stack(&stack);
+	free_stack(stack);
 	free(line);
 	return (exit_code);
 }
