@@ -22,7 +22,6 @@ int parse_monty(FILE *fp)
 	while ((read = getline(&line, &len, fp)) != -1)
 	{
 		line_number++;
-		printf("Line number: %d\t", line_number);
 		/* break the line into tokens */
 		/* op_tokens = strtok(line, DELIMS); */
 		op_tokens = op_seperater(line);

@@ -15,11 +15,10 @@ void free_stack(stack_t *stack)
 
 	while (stack != NULL)
 	{
-		temp = stack->next;
+		temp = stack;
+		stack = stack->next;
 		free(temp);
-		stack = temp;
 	}
-
 }
 
 /**
