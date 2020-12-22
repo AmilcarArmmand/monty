@@ -4,7 +4,7 @@
 /* Libraries used  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
@@ -79,7 +79,7 @@ char **op_seperater(char *str);
 int file_open_error(char *filename);
 void free_stack(stack_t **stack);
 int initialize_stack(stack_t **stack);
-int stack_malloc_error(void)
+int stack_malloc_error(void);
 
 
 #endif  /* MONTY_H  */

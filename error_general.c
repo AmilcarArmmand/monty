@@ -22,4 +22,3 @@ int stack_malloc_error(void)
 	fprintf(stderr, "Error: failed to malloc stack\n");
 	return (EXIT_FAILURE);
 }
-
