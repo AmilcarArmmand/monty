@@ -26,27 +26,23 @@ int parse_monty(FILE *fp)
 		/* break the line into tokens */
 		/* op_tokens = strtok(line, DELIMS); */
 		op_tokens = op_seperater(line);
-		printf("Retrieved line of length %lu : %s\n", read, line);
-		/* if the first token is an op_function */
-		for (i = 0; *(op_tokens + i); i++)
-		{
-			printf(" ---> %s\n", *(op_tokens + i));
-		}
 		/* if op_token has no match and if there is a match */
-		printf("What had happened?!\n");
 		op_func = get_op_func(op_tokens[0]);
-		printf("Let's do this %s\n", *op_tokens);
 		if (op_func == NULL)
 		{
 			free_stack(stack);
-			/* free token */
+			for (i = 0; op_tokens[i]; i++)
+				free(op_tokens[i]);
+			free(op_tokens);
 			break;
 		}
 		op_func(&stack, line_number);
-		printf("I'm the captain now!\n");
 		/*   strcpm(op_token[0] = ) */
 		/* if get_op_func(op_tokens[0]) */
 		/* free tokens  */
+		for (i = 0; op_tokens[i]; i++)
+			free(op_tokens[i]);
+		free(op_tokens);
 	}
 	free_stack(stack);
 	free(line);

@@ -33,7 +33,6 @@ void (*get_op_func(char *opcode))(stack_t**, unsigned int)
 	{
 		if ((strcmp(op_func[i].opcode, opcode)) == 0)
 			return ((op_func[i]).f);
-		printf("Hello %s\n", op_func[i].opcode);
 	}
 	return (NULL);
 }
