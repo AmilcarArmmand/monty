@@ -80,4 +80,5 @@ int file_open_error(char *filename);
 void free_stack(stack_t **stack);
 int initialize_stack(stack_t **stack);
 int stack_malloc_error(void);
+unsigned int stack_len(stack_t **stack);
 #endif  /* MONTY_H  */

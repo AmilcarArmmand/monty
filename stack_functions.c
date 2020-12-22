@@ -43,3 +43,19 @@ int initialize_stack(stack_t **stack)
 
 	return (EXIT_SUCCESS);
 }
+
+/**
+ * stack_len - function that returns size of stack
+ * @stack: pointer to the head of a doubly linked list in a stack/queue
+ *
+ * Return: size of stack
+ */
+unsigned int stack_len(stack_t **stack)
+{
+	unsigned int length = 0;
+	stack_t *temp;
+
+	for (temp = *stack; temp != NULL; temp = temp->next)
+			length++;
+	return (length);
+}
