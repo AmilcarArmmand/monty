@@ -8,12 +8,13 @@
  */
 void op_swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *first, *second, *third;
+	stack_t *temp, *first, *second, *third;
 
-	if (stack_len(&stack) < 2)
-		return (op_swap_error(line_number));
+	temp = *stack;
+	if (temp->next == NULL || temp->next->next == NULL)
+		op_swap_error(line_number);
 	
-	first = *stack;
+	first = temp->next;
 	second = first->next;
 	third = second->next;
 
@@ -32,15 +33,17 @@ void op_swap(stack_t **stack, unsigned int line_number)
  */
 void op_rotl(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top, *bottom, *new_top;
+	stack_t *top, *bottom, *new_top, *temp;
 
 	(void)line_number;
 
-	if (stack_len(&stack) > 1)
+	temp = *stack;
+	if (temp->next->next != NULL && temp->next != NULL)
 	{
-		top = *stack;
+		temp = temp->next;
+		top = temp;
 		new_top = top->next;
-		bottom = *stack;
+		bottom = temp;
 		while (bottom->next != NULL)
 			bottom = bottom->next;
 
@@ -59,14 +62,16 @@ void op_rotl(stack_t **stack, unsigned int line_number)
  */
 void op_rotr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top, *bottom, *new_bottom;
+	stack_t *top, *bottom, *new_bottom, *temp;
 
 	(void)line_number;
 
-	if (stack_len(&stack) > 1)
+	temp = *stack;
+	if (temp->next->next != NULL && temp->next != NULL)
 	{
-		top = *stack;
-		bottom = *stack;
+		temp = temp->next;
+		top = temp;
+		bottom = temp;
 		while (bottom->next != NULL)
 			bottom = bottom->next;
 		new_bottom = bottom->prev;
