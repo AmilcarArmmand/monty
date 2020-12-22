@@ -81,5 +81,11 @@ void free_stack(stack_t **stack);
 int initialize_stack(stack_t **stack);
 int stack_malloc_error(void);
 
+void stack_push_node(stack_t **stack, int n);
+void stack_print_node(stack_t **stack);
+void stack_swap_node(stack_t **stack);
+void stack_rotl(stack_t **stack);
+void stack_rotr(stack_t **stack);
+void stack_pop(stack_t **stack);
 
 #endif  /* MONTY_H  */
