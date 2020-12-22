@@ -90,7 +90,7 @@ int parse_monty(FILE *fp);
 char **evaluate_monty(char *str);
 void (*get_op_func(char *opcode))(stack_t **stack, unsigned int line_number);
 char **op_seperater(char *str);
-void free_stack(stack_t **stack);
+void free_stack(stack_t *stack);
 int initialize_stack(stack_t **stack);
 
 unsigned int stack_len(stack_t **stack);
