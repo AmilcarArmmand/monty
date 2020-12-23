@@ -21,7 +21,7 @@ void op_push(stack_t **stack, unsigned int line_number)
 	n = atoi(op_tokens[1]);
 
 	(void)line_number;
-	
+
 	temp = *stack;
 
 	new = malloc(sizeof(stack_t));
@@ -54,7 +54,7 @@ void op_push(stack_t **stack, unsigned int line_number)
  */
 void op_pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
+	stack_t *temp = NULL;
 
 	temp = *stack;
 	if (temp->next == NULL)
@@ -83,7 +83,7 @@ void op_nop(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * op_stack - sets mdoe to stack
+ * op_stack - sets the format of the data to a stack (LIFO)
  * @stack: pointer to head of doubly linked list
  * @line_number: current line number
  * Return: address of new nodes or NULL on failure
@@ -98,7 +98,7 @@ void op_stack(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * op_queue - sets mode to queue
+ * op_queue - sets the format of the data to a queue (FIFO)
  * @stack: pointer to head of doubly linked list
  * @line_number: current line number
  * Return: address of new nodes or NULL on failure

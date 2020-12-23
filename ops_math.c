@@ -18,7 +18,6 @@ void op_add(stack_t **stack, unsigned int line_number)
 		op_add_error(line_number);
 		return;
 	}
-	
 	temp->next->next->n = temp->next->next->n + temp->next->n;
 	op_pop(stack, line_number);
 }
