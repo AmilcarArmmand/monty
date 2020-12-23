@@ -13,8 +13,11 @@ void op_add(stack_t **stack, unsigned int line_number)
 	temp = *stack;
 
 	if (temp->next == NULL || temp->next->next == NULL)
+	{
+		op_tokens[0] = "FAIL";
 		op_add_error(line_number);
-
+		return;
+	}
 	temp->next->next->n = temp->next->next->n + temp->next->n;
 	op_pop(stack, line_number);
 }
@@ -32,8 +35,11 @@ void op_sub(stack_t **stack, unsigned int line_number)
 	temp = *stack;
 
 	if (temp->next == NULL || temp->next->next == NULL)
-		op_add_error(line_number);
-
+	{
+		op_tokens[0] = "FAIL";
+		op_sub_error(line_number);
+		return;
+	}
 	temp->next->next->n = temp->next->next->n - temp->next->n;
 	op_pop(stack, line_number);
 }
@@ -51,11 +57,17 @@ void op_div(stack_t **stack, unsigned int line_number)
 	temp = *stack;
 
 	if (temp->next == NULL || temp->next->next == NULL)
+	{
+		op_tokens[0] = "FAIL";
 		op_div_error(line_number);
-
+		return;
+	}
 	if (temp->next->n == 0)
+	{
+		op_tokens[0] = "FAIL";
 		op_div_zero_error(line_number);
-
+		return;
+	}
 	temp->next->next->n = temp->next->next->n / temp->next->n;
 	op_pop(stack, line_number);
 }
@@ -73,8 +85,11 @@ void op_mul(stack_t **stack, unsigned int line_number)
 	temp = *stack;
 
 	if (temp->next == NULL || temp->next->next == NULL)
+	{
+		op_tokens[0] = "FAIL";
 		op_mul_error(line_number);
-
+		return;
+	}
 	temp->next->next->n = temp->next->next->n * temp->next->n;
 	op_pop(stack, line_number);
 }
@@ -92,11 +107,17 @@ void op_mod(stack_t **stack, unsigned int line_number)
 	temp = *stack;
 
 	if (temp->next == NULL || temp->next->next == NULL)
+	{
+		op_tokens[0] = "FAIL";
 		op_mod_error(line_number);
-
+		return;
+	}	
 	if (temp->next->n == 0)
+	{
+		op_tokens[0] = "FAIL";
 		op_div_zero_error(line_number);
-
+		return;
+	}
 	temp->next->next->n = temp->next->next->n % temp->next->n;
 	op_pop(stack, line_number);
 }

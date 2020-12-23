@@ -23,7 +23,6 @@ int parse_monty(FILE *fp)
 	{
 		line_number++;
 		/* break the line into tokens */
-		/* op_tokens = strtok(line, DELIMS); */
 		op_tokens = op_seperater(line);
 		/* if op_token has no match and if there is a match */
 		op_func = get_op_func(op_tokens[0]);
@@ -36,9 +35,8 @@ int parse_monty(FILE *fp)
 			break;
 		}
 		op_func(&stack, line_number);
-		/*   strcpm(op_token[0] = ) */
-		/* if get_op_func(op_tokens[0]) */
-		/* free tokens  */
+		if (strcmp(op_tokens[0], "FAIL") == 0)
+			break;
 		for (i = 0; op_tokens[i]; i++)
 			free(op_tokens[i]);
 		free(op_tokens);

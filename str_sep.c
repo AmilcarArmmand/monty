@@ -13,7 +13,7 @@ char **op_seperater(char *str)
 	char *s = str;
 	char *string;
 	char *delim = " ";
-	int i = 0, j;
+	int i = 0, j, c;
 
 	while (*s)
 	{
@@ -30,6 +30,9 @@ char **op_seperater(char *str)
 	{
 		if (string == NULL)
 			break;
+		for (c = 0; string[c] != '\0'; c++)
+			if (string[c] == '\n')
+				string[c] = '\0';
 		doubl[i] = malloc(sizeof(char) * strlen(string) + 1);
 		if (doubl[i] == NULL)
 		{

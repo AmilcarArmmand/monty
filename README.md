@@ -6,7 +6,23 @@ Monty Bytecode Interpreter built with the C programming language.
 ### Compilation & Output  :wrench:
 
 ```
-gcc -Wall -Werror gcc -Wall -Werror
+gcc -Wall -Werror gcc -Wall -Werror *.c
+```
+
+### Example Usage
+
+```
+push 1
+push 5
+pall
+add
+pall
+```
+output:
+```
+5
+1
+6
 ```
 
 ### Opcodes  :snake:

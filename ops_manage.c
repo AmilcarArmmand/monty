@@ -11,9 +11,10 @@ void op_push(stack_t **stack, unsigned int line_number)
 	stack_t *new, *temp;
 	int n, i;
 
-	for (i = 0; op_tokens[1][i + 1]; i++)
+	for (i = 0; op_tokens[1][i]; i++)
 		if (!isdigit(op_tokens[1][i]))
 		{
+			op_tokens[0] = "FAIL";
 			op_push_error(line_number);
 			return;
 		}
@@ -55,16 +56,18 @@ void op_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = NULL;
 
-	if ((*stack)->next == NULL)
+	temp = *stack;
+	if (temp->next == NULL)
 	{
+		op_tokens[0] = "FAIL";
 		op_pop_error(line_number);
 		return;
 	}
-
-	temp = (*stack)->next->next;
-	if (temp != NULL)
-		temp->prev = (*stack);
-	free((*stack)->next);
+	temp = temp->next;
+	temp->prev->next = temp->next;
+	if (temp->next != NULL)
+		temp->next->prev = temp->prev;
+	free(temp);
 }
 
 /**

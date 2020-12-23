@@ -12,8 +12,11 @@ void op_swap(stack_t **stack, unsigned int line_number)
 
 	temp = *stack;
 	if (temp->next == NULL || temp->next->next == NULL)
+	{
+		op_tokens[0] = "FAIL";
 		op_swap_error(line_number);
-
+		return;
+	}
 	first = temp->next;
 	second = first->next;
 	third = second->next;
