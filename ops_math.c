@@ -111,7 +111,7 @@ void op_mod(stack_t **stack, unsigned int line_number)
 		op_tokens[0] = "FAIL";
 		op_mod_error(line_number);
 		return;
-	}	
+	}
 	if (temp->next->n == 0)
 	{
 		op_tokens[0] = "FAIL";

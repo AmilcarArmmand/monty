@@ -54,7 +54,7 @@ void op_pchar(stack_t **stack, unsigned int line_number)
 		op_pchar_error(line_number);
 		return;
 	}
-	if (1 <= temp->next->n && temp->next->n <= 127)
+	if ((temp->next->n >= 1) && (temp->next->n <= 127))
 		printf("%c\n", temp->next->n);
 	else
 	{
