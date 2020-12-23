@@ -11,7 +11,7 @@ void op_push(stack_t **stack, unsigned int line_number)
 	stack_t *new, *temp;
 	int n, i;
 
-	for (i = 0; op_tokens[1][i + 1]; i++)
+	for (i = 0; op_tokens[1][i]; i++)
 		if (!isdigit(op_tokens[1][i]))
 		{
 			op_push_error(line_number);
