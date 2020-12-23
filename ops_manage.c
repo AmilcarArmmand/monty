@@ -14,6 +14,7 @@ void op_push(stack_t **stack, unsigned int line_number)
 	for (i = 0; op_tokens[1][i]; i++)
 		if (!isdigit(op_tokens[1][i]))
 		{
+			op_tokens[0] = "FAIL";
 			op_push_error(line_number);
 			return;
 		}
@@ -57,7 +58,11 @@ void op_pop(stack_t **stack, unsigned int line_number)
 
 	temp = *stack;
 	if (temp->next == NULL)
+	{
+		op_tokens[0] = "FAIL";
 		op_pop_error(line_number);
+		return;
+	}
 	temp = temp->next;
 	temp->prev->next = temp->next;
 	if (temp->next != NULL)
@@ -78,7 +83,7 @@ void op_nop(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * op_stack -
+ * op_stack - sets mdoe to stack
  * @stack: pointer to head of doubly linked list
  * @line_number: current line number
  * Return: address of new nodes or NULL on failure
@@ -93,7 +98,7 @@ void op_stack(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * op_queue -
+ * op_queue - sets mode to queue
  * @stack: pointer to head of doubly linked list
  * @line_number: current line number
  * Return: address of new nodes or NULL on failure

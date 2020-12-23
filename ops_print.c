@@ -29,7 +29,11 @@ void op_pint(stack_t **stack, unsigned int line_number)
 
 	temp = *stack;
 	if (temp->next == NULL)
+	{
+		op_tokens[0] = "FAIL";
 		op_pint_error(line_number);
+		return;
+	}
 	printf("%d\n", temp->next->n);
 }
 
@@ -45,11 +49,19 @@ void op_pchar(stack_t **stack, unsigned int line_number)
 
 	temp = *stack;
 	if (temp->next == NULL)
-		op_pint_error(line_number);
+	{
+		op_tokens[0] = "FAIL";
+		op_pchar_error(line_number);
+		return;
+	}
 	if (1 <= temp->next->n && temp->next->n <= 127)
 		printf("%c\n", temp->next->n);
 	else
+	{
+		op_tokens[0] = "FAIL";
 		op_pchar_value_error(line_number);
+		return;
+	}
 }
 
 /**
