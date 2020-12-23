@@ -46,7 +46,7 @@ void op_pchar(stack_t **stack, unsigned int line_number)
 	temp = *stack;
 	if (temp->next == NULL)
 		op_pint_error(line_number);
-	if (1 <= temp->next->n && temp->next->n <= 127)
+	if ((temp->next->n <= 1) && (temp->next->n <= 127))
 		printf("%c\n", temp->next->n);
 	else
 		op_pchar_value_error(line_number);
@@ -68,7 +68,7 @@ void op_pstr(stack_t **stack, unsigned int line_number)
 	{
 		if (temp->n == 0)
 			break;
-		if (1 <= temp->next->n && temp->next->n <= 127)
+		if ((temp->next->n >= 1) && (temp->next->n <= 127))
 			printf("%c\n", temp->n);
 		else
 			break;

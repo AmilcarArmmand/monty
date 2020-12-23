@@ -13,7 +13,7 @@ void op_swap(stack_t **stack, unsigned int line_number)
 	temp = *stack;
 	if (temp->next == NULL || temp->next->next == NULL)
 		op_swap_error(line_number);
-	
+
 	first = temp->next;
 	second = first->next;
 	third = second->next;

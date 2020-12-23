@@ -2,7 +2,7 @@
 
 /**
  * get_op_func - a function that selects the function to perform the operation
- * @s: the operator passed as an argumant
+ * @opcode: the operator passed as an argumant
  *
  * Return: the pointer to the function that performs the operation or NULL
  */

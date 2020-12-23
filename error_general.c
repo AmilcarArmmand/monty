@@ -13,7 +13,7 @@ int file_open_error(char *filename)
 }
 
 /**
- * strack_malloc_error - error function in case malloc fails for stack
+ * stack_malloc_error - error function in case malloc fails for stack
  *
  * Return: EXIT_FAILURE always
  */
