@@ -53,16 +53,18 @@ void op_push(stack_t **stack, unsigned int line_number)
  */
 void op_pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
+	stack_t *temp = NULL;
 
-	temp = *stack;
-	if (temp->next == NULL)
+	if ((*stack)->next == NULL)
+	{
 		op_pop_error(line_number);
-	temp = temp->next;
-	temp->prev->next = temp->next;
-	if (temp->next != NULL)
-		temp->next->prev = temp->prev;
-	free(temp);
+		return;
+	}
+
+	temp = (*stack)->next->next;
+	if (temp != NULL)
+		temp->prev = (*stack);
+	free((*stack)->next);
 }
 
 /**
