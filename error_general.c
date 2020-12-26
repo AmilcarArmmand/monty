@@ -22,3 +22,14 @@ int stack_malloc_error(void)
 	fprintf(stderr, "Error: failed to malloc stack\n");
 	return (EXIT_FAILURE);
 }
+
+/**
+ * usage_error - function that checks that the number of arguments given is 2
+ *
+ * Return: EXIT_FAILURE always
+ */
+int usage_error(void)
+{
+	fprintf(stderr, "USAGE: monty file\n");
+	return (EXIT_FAILURE);
+}

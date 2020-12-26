@@ -81,6 +81,7 @@ int op_div_zero_error(unsigned int line_number);
 int op_pint_error(unsigned int line_number);
 int op_pchar_error(unsigned int line_number);
 int op_pchar_value_error(unsigned int line_number);
+int usage_error(void);
 
 int parse_monty(FILE *fp);
 char **evaluate_monty(char *str);

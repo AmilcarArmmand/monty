@@ -20,13 +20,12 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		return (EXIT_FAILURE);
+		return (usage_error());
 	}
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
 	{
-		file_open_error(argv[1]);
-		exit(EXIT_FAILURE);
+		return (file_open_error(argv[1]));
 	}
 
 	exit_code = parse_monty(fp);
