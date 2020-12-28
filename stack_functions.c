@@ -6,18 +6,17 @@
  *
  * Return: nothing
  */
-void free_stack(stack_t *stack)
+void free_stack(stack_t **stack)
 {
 	stack_t *temp;
 
-	if (stack == NULL)
-		return;
+	temp = *stack;
 
-	while (stack != NULL)
+	while (*stack != NULL)
 	{
-		temp = stack;
-		stack = stack->next;
-		free(temp);
+		temp = (*stack)->next;
+		free(*stack);
+		*stack = temp;
 	}
 }
 

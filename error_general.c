@@ -8,7 +8,7 @@
  */
 int file_open_error(char *filename)
 {
-	fprintf(stderr, "Error: can't open file %s\n", filename);
+	fprintf(stderr, "Error: Can't open file %s\n", filename);
 	return (EXIT_FAILURE);
 }
 
@@ -31,5 +31,29 @@ int stack_malloc_error(void)
 int usage_error(void)
 {
 	fprintf(stderr, "USAGE: monty file\n");
+	return (EXIT_FAILURE);
+}
+
+/**
+ * unknown_instruct - checks that the number of arguments given is 2
+ * @line_number: the line number where the command usage error occurred
+ * @token: the command token for the given line
+ *
+ * Return: EXIT_FAILURE always
+ */
+int unknown_instruct(unsigned int line_number, char *token)
+{
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
+	return (EXIT_FAILURE);
+}
+
+/**
+ * malloc_error - Prints malloc failed error message to stderr
+ *
+ * Return: EXIT_FAILURE always
+ */
+int malloc_error(void)
+{
+	fprintf(stderr, "Error: malloc failed\n");
 	return (EXIT_FAILURE);
 }
