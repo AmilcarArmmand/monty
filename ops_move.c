@@ -38,7 +38,7 @@ void op_rotl(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 
-	if ((*stack)->next->next == NULL || (*stack)->next->next == NULL)
+	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
 		return;
 
 	top = (*stack)->next;

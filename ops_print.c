@@ -72,17 +72,14 @@ void op_pchar(stack_t **stack, unsigned int line_number)
  */
 void op_pstr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
+	stack_t *temp = (*stack)->next;
 
 	(void)line_number;
-	temp = *stack;
-	for (temp = temp->next; temp != NULL; temp = temp->next)
+
+	while (temp && temp->n != 0 && (temp->n >= 1 && (temp->n <= 127)))
 	{
-		if (temp->n == 0)
-			break;
-		if ((temp->next->n >= 1) && (temp->next->n <= 127))
-			printf("%c\n", temp->n);
-		else
-			break;
+		printf("%c\n", temp->n);
+		temp = temp->next;
 	}
+	printf("\n");
 }
