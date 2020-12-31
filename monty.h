@@ -14,8 +14,7 @@
 #define DELIMS " \n\t\v\r\a"
 
 #define EXIT_SUCCESS 0
-extern char **op_tokens; /*  extern needed in header and define in main.c */
-
+extern char **op_tokens; /* here instead of in files, defined in main_monty */
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)

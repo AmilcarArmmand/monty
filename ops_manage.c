@@ -9,25 +9,29 @@
 void op_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new, *temp;
-	int n, i;
+	int i;
 
+	if (op_tokens[1] == NULL)
+	{
+		op_push_error(line_number);
+		return;
+	}
 	for (i = 0; op_tokens[1][i]; i++)
+	{
+		if (op_tokens[1][i] == '-' && i == 0)
+			continue;
 		if (!isdigit(op_tokens[1][i]))
 		{
 			op_tokens[0] = "FAIL";
 			op_push_error(line_number);
 			return;
 		}
-	n = atoi(op_tokens[1]);
-
-	(void)line_number;
-
+	}
 	temp = *stack;
-
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 		stack_malloc_error();
-	new->n = n;
+	new->n = atoi(op_tokens[1]);
 	if (temp->n == 0)
 	{
 		if (temp->next != NULL)

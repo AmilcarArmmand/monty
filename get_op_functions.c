@@ -19,6 +19,7 @@ void (*get_op_func(char *opcode))(stack_t**, unsigned int)
 		{"sub", op_sub},
 		{"div", op_div},
 		{"mul", op_mul},
+		{"mod", op_mod},
 		{"pchar", op_pchar},
 		{"pstr", op_pstr},
 		{"rotr", op_rotr},

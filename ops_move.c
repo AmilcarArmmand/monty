@@ -8,24 +8,22 @@
  */
 void op_swap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp, *first, *second, *third;
+	stack_t *temp; /* *first, *second, *third; */
 
-	temp = *stack;
-	if (temp->next == NULL || temp->next->next == NULL)
+	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
 	{
 		op_tokens[0] = "FAIL";
 		op_swap_error(line_number);
 		return;
 	}
-	first = temp->next;
-	second = first->next;
-	third = second->next;
-
-	second->next = first;
-	second->prev = first->prev;
-	first->prev = second;
-	first->next = third;
-	third->prev = first;
+	temp = (*stack)->next->next;
+	(*stack)->next->prev = temp;
+	(*stack)->next->next = temp->next;
+	if (temp->next != NULL)
+		temp->next->prev = (*stack)->next;
+	temp->next = (*stack)->next;
+	temp->prev = *stack;
+	(*stack)->next = temp;
 }
 
 /**
@@ -36,25 +34,23 @@ void op_swap(stack_t **stack, unsigned int line_number)
  */
 void op_rotl(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top, *bottom, *new_top, *temp;
+	stack_t *top, *bottom;
 
 	(void)line_number;
 
-	temp = *stack;
-	if (temp->next->next != NULL && temp->next != NULL)
-	{
-		temp = temp->next;
-		top = temp;
-		new_top = top->next;
-		bottom = temp;
-		while (bottom->next != NULL)
-			bottom = bottom->next;
+	if ((*stack)->next->next == NULL || (*stack)->next->next == NULL)
+		return;
 
-		new_top->prev = top->prev;
-		top->prev = bottom;
-		top->next = bottom->next;
-		bottom->next = top;
-	}
+	top = (*stack)->next;
+	bottom = (*stack)->next;
+	while (bottom->next != NULL)
+		bottom = bottom->next;
+
+	top->next->prev = *stack;
+	(*stack)->next = top->next;
+	bottom->next = top;
+	top->next = NULL;
+	top->prev = bottom;
 }
 
 /**

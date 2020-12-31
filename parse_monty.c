@@ -34,16 +34,19 @@ int parse_monty(FILE *fp)
 			continue;
 		}
 		op_func = get_op_func(op_tokens[0]);
-		if (op_func == NULL)  /* if op_token[0] is not valid command */
+		if (op_func == NULL)
 		{
 			free_stack(&stack);
 			exit_code = unknown_instruct(line_number, op_tokens[0]);
 			free_tokens();
 			break;
 		}
-		op_func(&stack, line_number);  /* run valid command */
+		op_func(&stack, line_number);
 		if (strcmp(op_tokens[0], "FAIL") == 0)
-			break;
+		{
+			exit_code = EXIT_FAILURE;
+			break; /* set  func to set exit_code from op_funcs  */
+		}
 		free_tokens();
 	}
 	free_stack(&stack), free(line);
