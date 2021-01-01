@@ -9,7 +9,7 @@
  */
 char **op_seperater(char *str)
 {
-	char **doubl;
+	char **doubl = NULL;
 	char *s = str;
 	char *string;
 	char *delim = " ";
