@@ -22,12 +22,9 @@ int parse_monty(FILE *fp)
 	{
 		line_number++;
 		op_tokens = op_seperater(line);  /* separate line into tokens */
-		if (op_tokens == NULL)  /* if line is delims or empty continue */
-		{
-			if (line_is_space(line, DELIMS))
-				continue;
-			free_stack(&stack); /* return malloc failed error next but > 40 */
-		}
+		if (op_tokens == NULL || (line_is_space(line, DELIMS) == 1))
+			continue;
+
 		else if (op_tokens[0][0] == '#') /* if line is comments  */
 		{
 			free_tokens();
@@ -72,22 +69,22 @@ void free_tokens(void)
 
 /**
  * line_is_space - checks if the character is a whitespace char or not
- * @line: a pointer to the line read from filestream
+ * @str: a pointer to the line read from filestream
  * @delims: a pointer to a string of delimeters
  *
- * Return: 1 if char in line are space characters or 0 if not.
+ * Return: 1 if the string only contains delimiters or 0 if not.
  */
-int line_is_space(char *line, char *delims)
+int line_is_space(char *str, char *delims)
 {
 	int alpha, bravo;
 
 	alpha = bravo = 0;
 
-	for (alpha = 0; line[alpha]; alpha++)
+	for (alpha = 0; str[alpha]; alpha++)
 	{
 		for (bravo = 0; delims[bravo]; bravo++)
 		{
-			if (line[alpha] == delims[bravo])
+			if (str[alpha] == delims[bravo])
 			break;
 		}
 		if (delims[bravo] == '\0')
